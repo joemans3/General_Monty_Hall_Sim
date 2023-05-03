@@ -15,6 +15,7 @@ The class can be used to do other things. Here is the general flow to use this c
 from PATH_TO_MAIN.PY import General_MontyHall_Simulator
 
 repeats = 1000
+
 game = General_MontyHall_Simulator(num_doors=3, num_prizes=1, num_remove_rounds=1, stratergy="switch")
 
 win_rate = game(repeats)
