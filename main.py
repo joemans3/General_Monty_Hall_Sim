@@ -92,19 +92,24 @@ if __name__ == "__main__":
     num_door_range = np.arange(3,10)
     num_prizes = 1
     num_remove_rounds = 1
-    stratergy = "switch" #switch or keep
     repeats = 1000
-    win_rates = []
+    win_rates_switch = []
+    win_rates_keep = []
     for num_doors in num_door_range:
-        game = General_MontyHall_Simulator(num_doors,num_prizes,num_remove_rounds,stratergy)
-        win_rates.append(game(repeats=repeats))
+        game_switch = General_MontyHall_Simulator(num_doors,num_prizes,num_remove_rounds,"switch")
+        game_keep = General_MontyHall_Simulator(num_doors,num_prizes,num_remove_rounds,"keep")
+        win_rates_switch.append(game_switch(repeats=repeats))
+        win_rates_keep.append(game_keep(repeats=repeats))
+
     
     #make a plot of the win rates
     fig, ax = plt.subplots()
-    ax.plot(num_door_range,win_rates)
+    ax.plot(num_door_range,win_rates_switch,label="Choice = Switch")
+    ax.plot(num_door_range,win_rates_keep,label="Choice = Keep")
     ax.set_xlabel("Number of Doors")
     ax.set_ylabel("Win Rate")
-    ax.set_title("Win Rate vs Number of Doors in the Monty Hall Problem")
+    ax.set_title("Win Rate vs Number of Doors in the Monty Hall Problem \n with 1 Prize and 1 Remove Round")
+    ax.legend(loc="upper right")
     plt.show()
 
 
